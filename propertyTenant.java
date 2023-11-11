@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+
+public class propertyTenant extends user {
+  private String propertyAddress;
+  private double monthlyRent;
+  private ArrayList<contract> contract;
+
+  public propertyTenant(int userId, String firstName, String lastName, String email, String password,
+      String propertyAddress, double monthlyRent) {
+    super(userId, firstName, lastName, email, password);
+    this.propertyAddress = propertyAddress;
+    this.monthlyRent = monthlyRent;
+  }
+
+  public String getPropertyAddress() {
+    return propertyAddress;
+  }
+
+  public void setPropertyAddress(String propertyAddress) {
+    this.propertyAddress = propertyAddress;
+  }
+
+  public double getMonthlyRent() {
+    return monthlyRent;
+  }
+
+  public void setMonthlyRent(double monthlyRent) {
+    this.monthlyRent = monthlyRent;
+  }
+
+  public void CreateProperty(contract con) {
+    contract.add(con);
+  }
+
+  public void TerminateRentalContact(contract con) {
+    contract.remove(con);
+  }
+
+  public ArrayList<contract> getLeases() {
+    return contract;
+  }
+
+}
