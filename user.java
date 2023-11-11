@@ -6,7 +6,13 @@ public class User {
   private String email;
   private String password;
 
-  public User(int userId, String firstName, String lastName, String email, String password) {
+  public User(
+    int userId,
+    String firstName,
+    String lastName,
+    String email,
+    String password
+  ) {
     this.userId = userId;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -59,12 +65,25 @@ public class User {
     return true;
   }
 
-  public boolean Login(String id, String firstName, String email, String password) {
+  public boolean Login(
+    String id,
+    String firstName,
+    String email,
+    String password
+  ) {
     return true;
   }
 
   public String Update(String id, String firstName, String email) {
-    String string = "id=" + id + ", firstName=" + firstName + ", email=" + email + ", password=" + password;
+    String string =
+      "id=" +
+      id +
+      ", firstName=" +
+      firstName +
+      ", email=" +
+      email +
+      ", password=" +
+      password;
     return string;
   }
 
@@ -72,5 +91,4 @@ public class User {
     String string = " ";
     return string;
   }
-
 }

@@ -9,6 +9,8 @@ public class Contract {
   private String endDate;
   private double rentAmount;
 
+  public Contract() {}
+
   public Contract(
     int contractID,
     int propertyID,
@@ -24,6 +26,33 @@ public class Contract {
     this.endDate = endDate;
     this.rentAmount = rentAmount;
   }
+
+public static Contract CreateContract(
+    int contractID,
+    int propertyID,
+    int tenantID,
+    String startDate,
+    String endDate,
+    double rentAmount
+  ) {
+    return new Contract(
+      contractID,
+      propertyID,
+      tenantID,
+      startDate,
+      endDate,
+      rentAmount
+    );
+  }
+
+  public static void TerminateContract(
+    Contract contract,
+    ArrayList<Contract> contracts
+  ) {
+    contracts.remove(contract);
+  }
+
+
 
   public int getContractID() {
     return contractID;
@@ -73,28 +102,5 @@ public class Contract {
     this.rentAmount = rentAmount;
   }
 
-  public static contract CreateContract(
-    int contractID,
-    int propertyID,
-    int tenantID,
-    String startDate,
-    String endDate,
-    double rentAmount
-  ) {
-    return new contract(
-      contractID,
-      propertyID,
-      tenantID,
-      startDate,
-      endDate,
-      rentAmount
-    );
-  }
-
-  public static void TerminateContract(
-    contract contract,
-    ArrayList<contract> contracts
-  ) {
-    contracts.remove(contract);
-  }
+  
 }
