@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class PropertyTenant extends user {
+public class PropertyTenant extends User {
   private String propertyAddress;
   private double monthlyRent;
   private ArrayList<Contract> contract;

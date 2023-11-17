@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class PropertyOwner extends user {
+public class PropertyOwner extends User {
 
   public PropertyOwner(int userId, String firstName, String lastName, String email, String password) {
     super(userId, firstName, lastName, email, password);

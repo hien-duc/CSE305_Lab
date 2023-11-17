@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Contract {
+public class Contract implements Serializable{
 
   private int contractID;
   private int propertyID;
@@ -10,13 +11,12 @@ public class Contract {
   private double rentAmount;
 
   public Contract(
-    int contractID,
-    int propertyID,
-    int tenantID,
-    Long startDate,
-    Long endDate,
-    double rentAmount
-  ) {
+      int contractID,
+      int propertyID,
+      int tenantID,
+      Long startDate,
+      Long endDate,
+      double rentAmount) {
     this.contractID = contractID;
     this.propertyID = propertyID;
     this.tenantID = tenantID;
@@ -25,18 +25,16 @@ public class Contract {
     this.rentAmount = rentAmount;
   }
 
-  public static ArrayList<Contract> CreateContract(
-    Contract contract,
-    ArrayList<Contract> listOfContract
-  ) {
+  public static ArrayList<Contract> createContract(
+      Contract contract,
+      ArrayList<Contract> listOfContract) {
     listOfContract.add(contract);
     return listOfContract;
   }
 
-  public static ArrayList<Contract> TerminateContract(
-    Contract contract,
-    ArrayList<Contract> contracts
-  ) {
+  public static ArrayList<Contract> terminateContract(
+      Contract contract,
+      ArrayList<Contract> contracts) {
     contracts.remove(contract);
     return contracts;
   }
