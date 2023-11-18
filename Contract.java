@@ -25,22 +25,15 @@ public class Contract implements Serializable {
     this.rentAmount = rentAmount;
   }
 
-  
-  public static ArrayList<Contract> createContract(
-      Contract contract,
-      ArrayList<Contract> listOfContract) {
+  public static ArrayList<Contract> createContract(Contract contract, ArrayList<Contract> listOfContract) {
     listOfContract.add(contract);
     return listOfContract;
   }
 
-  public static ArrayList<Contract> terminateContract(
-      Contract contract,
-      ArrayList<Contract> contracts) {
+  public static ArrayList<Contract> terminateContract(Contract contract, ArrayList<Contract> contracts) {
     contracts.remove(contract);
     return contracts;
   }
-
-
 
   public int getContractID() {
     return contractID;

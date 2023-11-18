@@ -59,9 +59,9 @@ public class ConstractDAO {
     try {
       fos = new FileOutputStream(folderPath + "\\" + "Contract.txt");
       oos = new ObjectOutputStream(fos);
-
       oos.writeObject(list);
       oos.flush();
+
     } catch (IOException ex) {
     } finally {
       try {
