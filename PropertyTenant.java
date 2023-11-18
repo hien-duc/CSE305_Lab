@@ -2,9 +2,10 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class PropertyTenant extends User {
+public class PropertyTenant extends User implements Serializable {
   private String propertyAddress;
   private double monthlyRent;
   private ArrayList<Contract> contract;
