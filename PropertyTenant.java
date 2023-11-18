@@ -20,6 +20,15 @@ public class PropertyTenant extends User implements Serializable {
     this.monthlyRent = monthlyRent;
   }
 
+  public PropertyTenant createUSersBaseOnConcreteBuilder(PropertyTenant tenant) {
+    PropertyTenant tenant1 = new ConcreteTenants().setid(tenant.getUserId()).setFirstName(tenant.getFirstName())
+        .setLastname(tenant.getLastName()).setEmail(tenant.getEmail()).setPassword(tenant.getPassword())
+        .setPropertyAddress(tenant.getPropertyAddress()).setMonthlyRent(tenant.getMonthlyRent()).build();
+
+    return tenant;
+
+  }
+
   public void saveTenantDataByChar(ArrayList<PropertyTenant> list) {
     FileWriter fw = null;
     BufferedWriter bw = null;
@@ -114,16 +123,9 @@ public class PropertyTenant extends User implements Serializable {
       return true;
     } else {
       return false;
-    }
-  }
+   
 
-
-////Get and set properties
-
-
-  public String getPropertyAddress() {
-    return propertyAddress;
-  }
+    // // Get and set propert
 
   public void setPropertyAddress(String propertyAddress) {
     this.propertyAddress = propertyAddress;
@@ -131,6 +133,34 @@ public class PropertyTenant extends User implements Serializable {
 
   public double getMonthlyRent() {
     return monthlyRent;
+  }
+
+  public String getPropertyAddress() {
+    return propertyAddress;
+  }
+
+  public ArrayList<Contract> getContract() {
+    return contract;
+  }
+
+  public void setContract(ArrayList<Contract> contract) {
+    this.contract = contract;
+  }
+
+  public ClassLoader getClassLoader() {
+    return classLoader;
+  }
+
+  public void setClassLoader(ClassLoader classLoader) {
+    this.classLoader = classLoader;
+  }
+
+  public String getPath() {
+    return path;
+  }
+
+  public void setPath(String path) {
+    this.path = path;
   }
 
   public void setMonthlyRent(double monthlyRent) {
