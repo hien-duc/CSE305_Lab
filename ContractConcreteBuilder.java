@@ -7,12 +7,6 @@ public class ContractConcreteBuilder implements ContractBuilder {
     private Long endDate;
     private double rentAmount;
 
-    public ContractConcreteBuilder(int contractID, int propertyID, int tenantID) {
-        this.contractID = contractID;
-        this.propertyID = propertyID;
-        this.tenantID = tenantID;
-    }
-
     @Override
     public ContractBuilder setContractID(int contractID) {
         this.contractID = contractID;
