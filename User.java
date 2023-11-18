@@ -18,15 +18,11 @@ import java.util.ArrayList;
 public class User {
 
     // data members
-    protected String userId;
-    protected String firstName;
-    protected String lastName;
-    protected String email;
-    protected String password;
-    protected ArrayList<User> listUsers = restoreDataRegister();
-
-    ClassLoader classLoader = getClass().getClassLoader();
-    String path = classLoader.getResource("Register.txt").toString();
+    String userId;
+    String firstName;
+    String lastName;
+    String email;
+    String password;
 
     // Constructor
     public User() {
@@ -51,93 +47,25 @@ public class User {
     }
 
     // Methods
-    public void createfileUserDAO() {
-        File folder = new File(path);
-        if (!folder.exists()) {
-            folder.mkdirs();
-        }
-        File data = new File(path + "\\" + "Register.txt");
-        if (!data.exists()) {
-            try {
-                data.createNewFile();
-            } catch (IOException ex) {
-            }
-        }
+    public static ArrayList<User> restoreDataRegister(ArrayList<User> list, User user) {
+
+        return list;
     }
 
-    public void saveDataByChar(ArrayList<User> list) {
-        FileWriter fw = null;
-        BufferedWriter bw = null;
-        try {
-            fw = new FileWriter("Register.txt" + "\\" + path);
-            bw = new BufferedWriter(fw);
-
-            for (int i = 0; i < list.size(); i++) {
-                User temp = list.get(i);
-                String userId = temp.getUserId();
-                String firstName = temp.getFirstName();
-                String lastName = temp.getLastName();
-                String email = temp.getEmail();
-                String password = temp.getPassword();
-
-                String line = userId + "," + firstName + "," + lastName + "," + email + "," + password;
-
-                bw.write(line);
-                bw.newLine();
-
-            }
-            bw.flush();
-
-        } catch (Exception ex) {
-
-        } finally {
-            try {
-                fw.close();
-                bw.close();
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
-    }
-
-    public ArrayList<User> restoreDataRegister() {
-        FileReader fr = null;
-        BufferedReader br = null;
-        String[] temp = new String[6];
-        ArrayList<User> list1 = new ArrayList<>();
-        try {
-            fr = new FileReader("Register.txt" + "\\" + path);
-            br = new BufferedReader(fr);
-            String line = "";
-            while ((line = br.readLine()) != null) {
-
-                temp = line.split(",");
-
-                User user = new User(temp[0], (temp[1]), (temp[2]), (temp[3]), (temp[4]));
-
-                list1.add(user);
-            }
-            br.close();
-
-            return list1;
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
-        return null;
-    }
-
-    public void setListUser(ArrayList<User> list) {
-
-        this.listUsers = list;
+    public static void setList(ArrayList<User> list) {
+        list = restoreDataRegister(list, null);
 
     }
 
-    public ArrayList<User> getListUser() {
-        return restoreDataRegister();
+    public static ArrayList<User> Register() {
+        User user = new User();
+        ArrayList list = restoreDataRegister(null, user);
+        list.add(user);
+        return list;
     }
 
-    public boolean Login(String id, String password) {
-        ArrayList<User> list = restoreDataRegister();
+    public static boolean Login(String id, String password) {
+        ArrayList<User> list = Register();
         for (int i = 0; i < list.size(); i++) {
             User user = list.get(i);
             if (id.equals(user.getUserId()) && password.equals(user.getPassword())) {
