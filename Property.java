@@ -1,4 +1,4 @@
-package main;
+// package main;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,6 +13,7 @@ public class Property {
     protected String propertyID;
     protected String description;
     protected double rentalRate;
+    protected ArrayList<Property> listProperty = restoreDataFromChar();
 
     ClassLoader classLoader = getClass().getClassLoader();
     String path = classLoader.getResource("propertyData.txt").toString();
@@ -58,7 +59,7 @@ public class Property {
         if (!folder.exists()) {
             folder.mkdirs();
         }
-        File data = new File("propertyData.txt" + "\\" + path);
+        File data = new File(path + "\\" + "propertyData.txt");
         if (!data.exists()) {
             try {
                 data.createNewFile();
@@ -71,7 +72,7 @@ public class Property {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
-            fw = new FileWriter("propertyData.txt" + "\\" + path);
+            fw = new FileWriter(path + "\\" + "propertyData.txt");
             bw = new BufferedWriter(fw);
 
             for (int i = 0; i < list.size(); i++) {
@@ -106,7 +107,7 @@ public class Property {
         String[] temp = new String[4];
         ArrayList<Property> list1 = new ArrayList<>();
         try {
-            fr = new FileReader("propertyData.txt" + "\\" + path);
+            fr = new FileReader(path + "\\" + "propertyData.txt");
             br = new BufferedReader(fr);
             String line = "";
             while ((line = br.readLine()) != null) {
@@ -170,8 +171,6 @@ public class Property {
     }
 
     public void setListProperty(ArrayList<Property> list) {
-
-        ArrayList<Property> listtemp = restoreDataFromChar();
-        listtemp = list;
+        this.listProperty = list;
     }
 }

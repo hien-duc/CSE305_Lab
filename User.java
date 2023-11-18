@@ -1,21 +1,39 @@
-package main;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class User {
 
-    //Data members
-    protected String userID;
+    // data members
+    protected String userId;
     protected String firstName;
     protected String lastName;
     protected String email;
     protected String password;
+    protected ArrayList<User> listUsers = restoreDataRegister();
+    ClassLoader classLoader = getClass().getClassLoader();
+    String path = classLoader.getResource("Register.txt").toString();
 
-    //constructors
+    // Constructor
     public User() {
-
     }
 
-    public User(String userID, String firstName, String lastName, String email, String password) {
-        this.userID = userID;
+    public User(String userId, String password) {
+        this.userId = userId;
+        this.password = password;
+    }
+
+    public User(String id,
+            String firstName,
+            String lastName,
+            String email,
+            String password) {
+        this.userId = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -23,30 +41,116 @@ public class User {
 
     }
 
-    //Methods
-    public void register() {
+    // Methods
+    public void createfileUserDAO() {
+        File folder = new File(path);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        File data = new File(path + "\\" + "Register.txt");
+        if (!data.exists()) {
+            try {
+                data.createNewFile();
+            } catch (IOException ex) {
+            }
+        }
+    }
+
+    public void saveDataByChar(ArrayList<User> list) {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fw = new FileWriter(path + "\\" + "Register.txt");
+            bw = new BufferedWriter(fw);
+
+            for (int i = 0; i < list.size(); i++) {
+                User temp = list.get(i);
+                String userId = temp.getUserId();
+                String firstName = temp.getFirstName();
+                String lastName = temp.getLastName();
+                String email = temp.getEmail();
+                String password = temp.getPassword();
+
+                String line = userId + "," + firstName + "," + lastName + "," + email + "," + password;
+
+                bw.write(line);
+                bw.newLine();
+
+            }
+            bw.flush();
+
+        } catch (Exception ex) {
+
+        } finally {
+            try {
+                fw.close();
+                bw.close();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+    public ArrayList<User> restoreDataRegister() {
+        FileReader fr = null;
+        BufferedReader br = null;
+        String[] temp = new String[6];
+        ArrayList<User> list1 = new ArrayList<>();
+        try {
+            fr = new FileReader(path + "\\" + "Register.txt");
+            br = new BufferedReader(fr);
+            String line = "";
+            while ((line = br.readLine()) != null) {
+
+                temp = line.split(",");
+
+                User user = new User(temp[0], (temp[1]), (temp[2]), (temp[3]), (temp[4]));
+
+                list1.add(user);
+            }
+            br.close();
+
+            return list1;
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
+
+    public void setListUser(ArrayList<User> list) {
+        listUsers = list;
+    }
+
+    public ArrayList<User> getListUser() {
+        return restoreDataRegister();
+    }
+
+    public boolean Login(String id, String password) {
+        ArrayList<User> list = restoreDataRegister();
+        for (int i = 0; i < list.size(); i++) {
+            User user = list.get(i);
+            if (id.equals(user.getUserId()) && password.equals(user.getPassword())) {
+                return true;
+            }
+        }
+        return false;
 
     }
 
-    public void Login() {
-
+    public void UpdateProfile() {
     }
 
-    public void updateProfile() {
-
+    public String resetpassword(String Username, String password) {
+        this.password = password;
+        return this.password;
     }
 
-    public void resetPassword() {
-
+    public String getUserId() {
+        return userId;
     }
 
-//get set method
-    public String getUserID() {
-        return userID;
-    }
-
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -81,4 +185,5 @@ public class User {
         this.password = password;
     }
 
+    // Methods
 }
