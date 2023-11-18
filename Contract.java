@@ -25,15 +25,7 @@ public class Contract implements Serializable {
     this.rentAmount = rentAmount;
   }
 
-  public Contract(RentalContractBuilder builder) {
-    this.contractID = builder.contractID;
-    this.propertyID = builder.propertyID;
-    this.tenantID = builder.tenantID;
-    this.startDate = builder.startDate;
-    this.endDate = builder.endDate;
-    this.rentAmount = builder.rentAmount;
-  }
-
+  
   public static ArrayList<Contract> createContract(
       Contract contract,
       ArrayList<Contract> listOfContract) {
@@ -48,39 +40,7 @@ public class Contract implements Serializable {
     return contracts;
   }
 
-  public static class RentalContractBuilder {
-    private int contractID;
-    private int propertyID;
-    private int tenantID;
-    private Long startDate;
-    private Long endDate;
-    private double rentAmount;
 
-    public RentalContractBuilder(int contractID, int propertyID, int tenantID) {
-      this.contractID = contractID;
-      this.propertyID = propertyID;
-      this.tenantID = tenantID;
-    }
-
-    public RentalContractBuilder startDate(Long startDate) {
-      this.startDate = startDate;
-      return this;
-    }
-
-    public RentalContractBuilder endDate(Long endDate) {
-      this.endDate = endDate;
-      return this;
-    }
-
-    public RentalContractBuilder rentAmount(double rentAmount) {
-      this.rentAmount = rentAmount;
-      return this;
-    }
-
-    public Contract build() {
-      return new Contract(this);
-    }
-  }
 
   public int getContractID() {
     return contractID;
