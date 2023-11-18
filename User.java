@@ -51,6 +51,8 @@ public class User {
     }
 
     // Methods
+
+    //tao file chua du lieu login
     public void createfileUserDAO() {
         File folder = new File(path);
         if (!folder.exists()) {
@@ -64,7 +66,7 @@ public class User {
             }
         }
     }
-
+//viet du lieu xuong
     public void saveDataByChar(ArrayList<User> list) {
         FileWriter fw = null;
         BufferedWriter bw = null;
@@ -99,7 +101,7 @@ public class User {
             }
         }
     }
-
+// lay du lieu len
     public ArrayList<User> restoreDataRegister() {
         FileReader fr = null;
         BufferedReader br = null;
@@ -136,6 +138,7 @@ public class User {
         return restoreDataRegister();
     }
 
+    //Dang nhap
     public boolean Login(String id, String password) {
         ArrayList<User> list = restoreDataRegister();
         for (int i = 0; i < list.size(); i++) {
@@ -147,13 +150,14 @@ public class User {
         return false;
 
     }
-
+//Cap nhat user
     public boolean UpdateProfile(User user) {
 
         for (int i = 0; i < listUsers.size(); i++) {
             User temp = listUsers.get(i);
             if (temp.getUserId() == user.getUserId()) {
-                restoreDataRegister().set(restoreDataRegister().indexOf(temp), user);
+
+                restoreDataRegister().set(restoreDataRegister().indexOf(temp), createUSersBaseOnConcreteBuilder(user));
                 System.out.println("Success");
                 return true;
             } else {
@@ -166,12 +170,23 @@ public class User {
         return true;
     }
 
+    //Tao user
+    public User createUSersBaseOnConcreteBuilder(User user) {
+        User user1 = new ConcreteUsers().setid(user.getUserId()).setFirstName(user.getFirstName())
+                .setLastname(user.getLastName()).setEmail(user.getEmail()).setPassword(user.getPassword()).build();
+        return user1;
+
+    }
+//Them USer
     public boolean addUsers(User user) {
+
         for (int i = 0; i < listUsers.size(); i++) {
             if (listUsers.get(i).getUserId() == user.getUserId()) {
                 System.out.println("User is existed");
                 return false;
             } else {
+                User usertemp = createUSersBaseOnConcreteBuilder(user);
+                listUsers.add(usertemp);
                 System.out.println("Added Successfully");
                 return true;
             }
@@ -180,6 +195,7 @@ public class User {
         return true;
     }
 
+    //Doi mat khau
     public String resetpassword(String Username, String password) {
         this.password = password;
         return this.password;
@@ -224,9 +240,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-  
-
-
 
 }
