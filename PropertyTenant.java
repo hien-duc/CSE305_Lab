@@ -20,7 +20,7 @@ public class PropertyTenant extends User implements Serializable {
     this.monthlyRent = monthlyRent;
   }
 
-  public PropertyTenant createUSersBaseOnConcreteBuilder(PropertyTenant tenant) {
+  public PropertyTenant createTenantBaseOnConcreteBuilder(PropertyTenant tenant) {
     PropertyTenant tenant1 = new ConcreteTenants().setid(tenant.getUserId()).setFirstName(tenant.getFirstName())
         .setLastname(tenant.getLastName()).setEmail(tenant.getEmail()).setPassword(tenant.getPassword())
         .setPropertyAddress(tenant.getPropertyAddress()).setMonthlyRent(tenant.getMonthlyRent()).build();
