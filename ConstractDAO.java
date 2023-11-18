@@ -35,7 +35,6 @@ public class ConstractDAO {
     ArrayList<Contract> accountData = null;
 
     try {
-
       fis = new FileInputStream(folderPath + "\\" + "Contract.txt");
       ois = new ObjectInputStream(fis);
       accountData = (ArrayList<Contract>) ois.readObject();
@@ -52,23 +51,19 @@ public class ConstractDAO {
     }
 
     return accountData;
-
   }
 
   public void SaveAccountAsByte(ArrayList<Contract> list) {
     FileOutputStream fos = null;
     ObjectOutputStream oos = null;
-
     try {
       fos = new FileOutputStream(folderPath + "\\" + "Contract.txt");
       oos = new ObjectOutputStream(fos);
 
       oos.writeObject(list);
       oos.flush();
-
     } catch (IOException ex) {
     } finally {
-
       try {
         fos.close();
         oos.close();
@@ -80,5 +75,4 @@ public class ConstractDAO {
   public ArrayList<Contract> getAllContract() {
     return contractList;
   }
-
 }

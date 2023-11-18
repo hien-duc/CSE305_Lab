@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Contract implements Serializable{
+public class Contract implements Serializable {
 
   private int contractID;
   private int propertyID;
@@ -9,7 +9,7 @@ public class Contract implements Serializable{
   private Long startDate;
   private Long endDate;
   private double rentAmount;
-
+  
   public Contract(
       int contractID,
       int propertyID,
