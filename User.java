@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -11,10 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Student
- */
+
 public class User {
 
     // data members
@@ -152,22 +145,23 @@ public class User {
     }
 //Cap nhat user
     public boolean UpdateProfile(User user) {
-
+        boolean result = false;
         for (int i = 0; i < listUsers.size(); i++) {
             User temp = listUsers.get(i);
             if (temp.getUserId() == user.getUserId()) {
 
                 restoreDataRegister().set(restoreDataRegister().indexOf(temp), createUSersBaseOnConcreteBuilder(user));
                 System.out.println("Success");
-                return true;
+                result = true;
             } else {
                 System.out.println("Unsuccess");
-                return false;
+                result = false;
             }
-
+           
         }
+
         saveDataByChar(listUsers);
-        return true;
+        return result;
     }
 
     //Tao user
@@ -179,20 +173,20 @@ public class User {
     }
 //Them USer
     public boolean addUsers(User user) {
-
+        boolean result = true;
         for (int i = 0; i < listUsers.size(); i++) {
             if (listUsers.get(i).getUserId() == user.getUserId()) {
                 System.out.println("User is existed");
-                return false;
+                result = false;
             } else {
                 User usertemp = createUSersBaseOnConcreteBuilder(user);
                 listUsers.add(usertemp);
                 System.out.println("Added Successfully");
-                return true;
+                result = true;
             }
 
         }
-        return true;
+        return result;
     }
 
     //Doi mat khau
