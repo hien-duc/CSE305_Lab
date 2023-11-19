@@ -20,20 +20,22 @@ public class PropertyTenant extends User implements Serializable {
     this.monthlyRent = monthlyRent;
   }
 
-  public PropertyTenant createTenantBaseOnConcreteBuilder(PropertyTenant tenant) {
-    PropertyTenant tenant1 = new ConcreteTenants().setid(tenant.getUserId()).setFirstName(tenant.getFirstName())
-        .setLastname(tenant.getLastName()).setEmail(tenant.getEmail()).setPassword(tenant.getPassword())
-        .setPropertyAddress(tenant.getPropertyAddress()).setMonthlyRent(tenant.getMonthlyRent()).build();
+  // public PropertyTenant createTenantBaseOnConcreteBuilder(PropertyTenant
+  // tenant) {
+  // PropertyTenant tenant1 = new
+  // ConcreteTenants().setid(tenant.getUserId()).setFirstName(tenant.getFirstName())
+  // .setLastname(tenant.getLastName()).setEmail(tenant.getEmail()).setPassword(tenant.getPassword())
+  // .setPropertyAddress(tenant.getPropertyAddress()).setMonthlyRent(tenant.getMonthlyRent()).build();
 
-    return tenant;
+  // return tenant;
 
-  }
+  // }
 
   public void saveTenantDataByChar(ArrayList<PropertyTenant> list) {
     FileWriter fw = null;
     BufferedWriter bw = null;
     try {
-      fw = new FileWriter(path + "propertyData.txt" + "\\");
+      fw = new FileWriter(path + "\\" + "propertyTenant.txt");
       bw = new BufferedWriter(fw);
 
       for (int i = 0; i < list.size(); i++) {
@@ -73,7 +75,7 @@ public class PropertyTenant extends User implements Serializable {
     String[] temp = new String[4];
     ArrayList<PropertyTenant> list1 = new ArrayList<>();
     try {
-      fr = new FileReader(path + "propertyTenant.txt" + "\\");
+      fr = new FileReader(path + "\\" + "propertyTenant.txt");
       br = new BufferedReader(fr);
       String line = "";
       while ((line = br.readLine()) != null) {
