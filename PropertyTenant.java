@@ -125,9 +125,10 @@ public class PropertyTenant extends User implements Serializable {
       return true;
     } else {
       return false;
-   
+    }
+  }
 
-    // // Get and set propert
+  // // Get and set propert
 
   public void setPropertyAddress(String propertyAddress) {
     this.propertyAddress = propertyAddress;
